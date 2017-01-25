@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+TRIP_FEELINGS = [
+  'fine',
+  'excessive speed',
+  'bad attitudes',
+  'suck'
+]
+
+TRIP_FEELINGS.each do |feeling|
+  Trip::Feeling.create title: feeling
+end
