@@ -17,6 +17,5 @@ FactoryGirl.define do
     ended_at "2017-01-26 02:20:46"
     route "MyString"
     taxi nil
-    message "MyText"
   end
 end
