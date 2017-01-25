@@ -1,0 +1,3 @@
+# basic asset
+asset 'susy'
+asset 'sanitize-css'
