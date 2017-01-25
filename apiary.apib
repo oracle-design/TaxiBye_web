@@ -1,80 +1,33 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://taxibye.oddesign.expert/api/v1/
 
 # TaxiBye
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+TaxiBye 是一個可以記錄計程車行車路徑，並給予評價紀錄的 APP。使用者可以在告訴應用程式所搭計程車的車牌之後，開始記錄行車資料，並在結束時給予此計程車一個評分。
 
-## Questions Collection [/questions]
+----
 
-### List All Questions [GET]
+Change Log:
 
-+ Response 200 (application/json)
+  - 2017.01.25 - 新增基本 API
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
+----
 
-### Create a New Question [POST]
+# Group Taxis
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+## 積分排行 [/taxis/ranking{?number}]
 
-+ Request (application/json)
+列出計程車的積分排行。可指定數量上限。
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
+### fetch ranking list [GET]
 
-+ Response 201 (application/json)
 
-    + Headers
+## 車牌查詢 [/taxis/{license_plate_number}]
 
-            Location: /questions/2
+透過車牌查詢計程車的基本資料。
 
-    + Body
+### query taxi by license plate number [GET]
 
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+## 行程紀錄 [/taxis/{license_plate_number}/trips]
+
+### create a trip record [POST]
