@@ -10,7 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125102900) do
+ActiveRecord::Schema.define(version: 20170125192352) do
+
+  create_table "ratings", force: :cascade do |t|
+    t.decimal  "score"
+    t.text     "message"
+    t.integer  "trip_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "trip_feeling_id"
+    t.index ["trip_id"], name: "index_ratings_on_trip_id"
+  end
+
+  create_table "taxis", id: false, force: :cascade do |t|
+    t.string   "plate_number",                                         null: false
+    t.string   "driver",                               default: ""
+    t.decimal  "avg_rating",   precision: 3, scale: 1, default: "0.0"
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.index ["plate_number"], name: "index_taxis_on_plate_number", unique: true
+  end
+
+  create_table "trip_feelings", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.string   "route"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "taxi_plate_number"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
