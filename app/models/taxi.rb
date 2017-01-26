@@ -14,4 +14,6 @@ class Taxi < ApplicationRecord
 
   has_many :trips, foreign_key: 'taxi_plate_number'
   has_many :ratings, through: :trips
+
+  scope :ranking, -> {order(avg_rating: :desc)}
 end
