@@ -10,8 +10,29 @@ TaxiBye 是一個可以記錄計程車行車路徑，並給予評價紀錄的 AP
 Change Log:
 
   - 2017.01.25 - 新增基本 API
+  - 2017.02.02 - 新增 Authorization
 
 ----
+
+# Group Authorization
+
+## 登入
+
+使用 Email 和 Password 驗證使用者身份，並發行 Token
+
+### Login [POST]
+
++ Request (application/json)
+
+    + Attributes
+      + data (Email Login Info)
+
++ Response 201 (application/json)
+
+    + Attributes
+      + data (Login Success Response)
+      + errors (array)
+      + meta (object)
 
 # Group Taxis
 
@@ -20,7 +41,6 @@ Change Log:
 列出計程車的積分排行。可指定數量上限。
 
 ### fetch ranking list [GET]
-
 
 ## 車牌查詢 [/taxis/{license_plate_number}]
 
@@ -31,3 +51,15 @@ Change Log:
 ## 行程紀錄 [/taxis/{license_plate_number}/trips]
 
 ### create a trip record [POST]
+
+
+
+
+## Data Structures
+
+### Email Login Info
++ email: test@pricetagapp.com (string, required) - 使用者 Email
++ password: 09sad8f9lk12 (string, required) - 使用者密碼
+
+### Login Success Response
++ authToken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.d8nHlCSuxGZJhvxktOd9beAW0YBsB6PNcTtr-M36XoE (string) - JWT
