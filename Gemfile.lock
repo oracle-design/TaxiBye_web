@@ -488,6 +488,7 @@ DEPENDENCIES
   image_optim_pack
   jbuilder (~> 2.5)
   jquery-rails
+  jwt
   koala (~> 2.2)
   listen (~> 3.0.5)
   meta-tags
