@@ -16,7 +16,7 @@ Change Log:
 
 # Group Authorization
 
-## 登入
+## 登入 [/login]
 
 使用 Email 和 Password 驗證使用者身份，並發行 Token
 
@@ -27,12 +27,16 @@ Change Log:
     + Attributes
       + data (Email Login Info)
 
-+ Response 201 (application/json)
++ Response 202 (application/json)
 
     + Attributes
       + data (Login Success Response)
       + errors (array)
       + meta (object)
+
+
+
+
 
 # Group Taxis
 
@@ -42,24 +46,86 @@ Change Log:
 
 ### fetch ranking list [GET]
 
++ Parameters
+    + number: 5 (string, optional) - 限制回傳的數量上限
+      如果沒給值的話預設會回傳 10 筆資料
+      + Default: `10`
+
++ Response 200 (application/json)
+
+    + Attributes
+      + data (Taxi Ranking List)
+      + errors (array)
+      + meta (object)
+
+
+
 ## 車牌查詢 [/taxis/{license_plate_number}]
 
 透過車牌查詢計程車的基本資料。
 
 ### query taxi by license plate number [GET]
 
++ Response 200 (application/json)
+
+    + Attributes
+      + data (Taxi Info)
+      + errors (array)
+      + meta (object)
+
+
+
 ## 行程紀錄 [/taxis/{license_plate_number}/trips]
 
 ### create a trip record [POST]
 
++ Request (application/json)
 
+    + Headers
+
+            Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.d8nHlCSuxGZJhvxktOd9beAW0YBsB6PNcTtr-M36XoE
+            DeviceID: 15a6bf35-a455-4108-87d4-b669eb76ea58
+
+    + Attributes
+      + data (Trip Info)
+
++ Response 201 (application/json)
+
+    + Attributes
+      + data (Trip Created Response)
+      + errors (array)
+      + meta (object)
 
 
 ## Data Structures
 
 ### Email Login Info
-+ email: test@pricetagapp.com (string, required) - 使用者 Email
-+ password: 09sad8f9lk12 (string, required) - 使用者密碼
++ email: `test@pricetagapp.com` (string, required) - 使用者 Email
++ password: `09sad8f9lk12` (string, required) - 使用者密碼
+
+### Trip Info
++ startAt: `1486364960` (number, required) - 行程開始時間
++ endAt: `1486367282` (number, required) - 行程結束時間
++ trackFile: `kasjdkljsadkljaskdj` (string, required) - 航跡檔（GPX）
++ rating (Rating Request Data) - 評價內容
+
+### Trip Created Response
++ taxi (Taxi Info)
++ trip (Trip Info)
+
+### Rating Request Data
++ score: `4` (number, required) - 評分，請給整數
++ message: `最快最趴最大` (string, optional) - 留言
++ tripFeelingId: `1` (number, required) - 行程感受選項
 
 ### Login Success Response
-+ authToken: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.d8nHlCSuxGZJhvxktOd9beAW0YBsB6PNcTtr-M36XoE (string) - JWT
++ authToken: `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.d8nHlCSuxGZJhvxktOd9beAW0YBsB6PNcTtr-M36XoE` (string, required) - JWT
+
+
+###Taxi Ranking List
++ taxis (array[Taxi Info])
+
+### Taxi Info
++ plateNumber: `7788-KM` (string, required) - 車牌號碼
++ driver: `木村` (string, optional) - 駕駛人
++ avgRating: `1.8` (number, required) - 平均評分
