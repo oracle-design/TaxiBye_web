@@ -4,6 +4,8 @@ class Api::V1::AuthorizationController < Api::V1::BaseController
   def create
     user = User.find_by(email: params[:data][:email])
 
+    return render json: { errors: ['Invalid Email.'] }, status: :unauthorized if user.nil?
+
     if user.valid_password? params[:data][:password]
       render json: {
         data: {

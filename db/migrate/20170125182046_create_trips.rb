@@ -4,7 +4,7 @@ class CreateTrips < ActiveRecord::Migration[5.0]
       t.datetime :started_at
       t.datetime :ended_at
       t.string :route
-      t.references :taxi, foreign_key: true
+      t.string :taxi_plate_number, foreign_key: true
       t.text :message, default: ''
 
       t.timestamps
