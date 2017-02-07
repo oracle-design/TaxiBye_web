@@ -96,6 +96,20 @@ Change Log:
       + errors (array)
       + meta (object)
 
+# Group Trip
+
+## 取得 Feeling 列表 [/trips/feelings]
+
+### fetch trip feeling list [GET]
+
++ Response 200 (application/json)
+
+    + Attributes
+      + data (array[Trip Feeling])
+      + errors (array)
+      + meta
+        + count: `1` (number) - 總數
+        + listUpdatedAt: `1486367282` (number) - 最後更新時間
 
 ## Data Structures
 
@@ -112,6 +126,10 @@ Change Log:
 ### Trip Created Response
 + taxi (Taxi Info)
 + trip (Trip Info)
+
+### Trip Feeling
++ id: `1` (number, required)
++ title: 'fine' (string, required)
 
 ### Rating Request Data
 + score: `4` (number, required) - 評分，請給整數

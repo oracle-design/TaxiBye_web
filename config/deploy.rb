@@ -1,9 +1,9 @@
 # config valid only for Capistrano 3.1
-lock '~>3.4.0'
+# lock '~>3.4.0'
 
-set :application, 'AppName'
-set :repo_url, 'git@github.com:USERNAME/REPONAME.git'
-set :deploy_to, '/home/USERNAME/PATH_HERE'
+set :application, 'TaxiBye'
+set :repo_url, 'git@github.com:oracle-design/TaxiBye_web.git'
+set :deploy_to, '/home/deployer/websites/taxibye'
 
 set :linked_files, %w(config/database.yml)
 set :linked_files, %w(config/database.yml config/application.yml config/secrets.yml)
@@ -13,8 +13,9 @@ set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 # set :keep_releases, 5
 
 # Slack integration
-set :slack_webhook, 'https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXX'
-set :slack_team, 'XXXXXXXXX'
+set :slack_webhook, 'https://hooks.slack.com/services/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'
+set :slack_team, 'oracledigitaldesign'
+set :slack_channel, ['#deploy-notification', '#taxibye']
 
 set :slack_icon_url,         -> { 'http://gravatar.com/avatar/885e1c523b7975c4003de162d8ee8fee?r=g&s=40' }
 set :slack_icon_emoji,       -> { ':shipit:' } # will override icon_url, Must be a string (ex: ':shipit:')
