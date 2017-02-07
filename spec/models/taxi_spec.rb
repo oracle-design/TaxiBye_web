@@ -2,7 +2,7 @@
 #
 # Table name: taxis
 #
-#  plate_number :string           not null
+#  plate_number :string           not null, primary key
 #  driver       :string           default("")
 #  avg_rating   :decimal(3, 1)    default(0.0)
 #  created_at   :datetime         not null
