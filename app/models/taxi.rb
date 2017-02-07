@@ -16,4 +16,11 @@ class Taxi < ApplicationRecord
   has_many :ratings, through: :trips
 
   scope :ranking, -> {order(avg_rating: :desc)}
+
+  def update_avg_rating
+    all_ratings = ratings.select('score').map(&:score)
+    self.avg_rating = all_ratings.sum / all_ratings.size
+
+    save
+  end
 end

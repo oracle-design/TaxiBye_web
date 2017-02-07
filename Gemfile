@@ -83,6 +83,7 @@ group :development, :test do
   gem 'webmock'
 end
 
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'autoprefixer-rails'
 gem 'awesome_rails_console'
 gem 'bootstrap-sass'

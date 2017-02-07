@@ -7,6 +7,8 @@ class Api::ApiController < ActionController::Base
   end
 
   def authenticate_token!
+    return if auth_token.nil? #TODO: need remove this later
+
     payload = JsonWebToken.decode(auth_token)
     @current_user = User.find(payload['sub'])
   rescue JWT::ExpiredSignature

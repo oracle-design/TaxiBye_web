@@ -54,17 +54,17 @@ Change Log:
 + Response 200 (application/json)
 
     + Attributes
-      + data (Taxi Ranking List)
+      + data (array[Taxi Info])
       + errors (array)
       + meta (object)
 
 
 
-## 車牌查詢 [/taxis/{license_plate_number}]
+## 車牌查詢 [/taxis/{license_plate_number}/query]
 
 透過車牌查詢計程車的基本資料。
 
-### query taxi by license plate number [GET]
+### query taxi by license plate number [POST]
 
 + Response 200 (application/json)
 
@@ -104,9 +104,9 @@ Change Log:
 + password: `09sad8f9lk12` (string, required) - 使用者密碼
 
 ### Trip Info
-+ startAt: `1486364960` (number, required) - 行程開始時間
-+ endAt: `1486367282` (number, required) - 行程結束時間
-+ trackFile: `kasjdkljsadkljaskdj` (string, required) - 航跡檔（GPX）
++ startedAt: `1486364960` (number, required) - 行程開始時間
++ endedAt: `1486367282` (number, required) - 行程結束時間
++ route: `kasjdkljsadkljaskdj` (string, required) - 航跡檔（GPX）
 + rating (Rating Request Data) - 評價內容
 
 ### Trip Created Response
@@ -126,6 +126,10 @@ Change Log:
 + taxis (array[Taxi Info])
 
 ### Taxi Info
-+ plateNumber: `7788-KM` (string, required) - 車牌號碼
-+ driver: `木村` (string, optional) - 駕駛人
-+ avgRating: `1.8` (number, required) - 平均評分
++ id: `7788-KM` (string, required) - PK
++ type: `taxis` (string, required) - resource type
++ attributes (object, required)
+  + plateNumber: `7788-KM` (string, required) - 車牌號碼
+  + driver: `木村` (string, optional) - 駕駛人
+  + avgRating: `1.8` (number, required) - 平均評分
+  + updatedAt: `1486367282` (number, required) - 更新時間

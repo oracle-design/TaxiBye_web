@@ -13,5 +13,7 @@
 
 class Trip < ApplicationRecord
   belongs_to :taxi, foreign_key: 'taxi_plate_number'
-  has_one :rating
+  has_one :rating, dependent: :destroy
+
+  accepts_nested_attributes_for :rating, reject_if: :all_blank
 end
