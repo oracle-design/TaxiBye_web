@@ -54,7 +54,7 @@ Change Log:
 + Response 200 (application/json)
 
     + Attributes
-      + data (Taxi Ranking List)
+      + data (array[Taxi Info])
       + errors (array)
       + meta (object)
 
@@ -126,6 +126,10 @@ Change Log:
 + taxis (array[Taxi Info])
 
 ### Taxi Info
-+ plateNumber: `7788-KM` (string, required) - 車牌號碼
-+ driver: `木村` (string, optional) - 駕駛人
-+ avgRating: `1.8` (number, required) - 平均評分
++ id: `7788-KM` (string, required) - PK
++ type: `taxis` (string, required) - resource type
++ attributes (object, required)
+  + plateNumber: `7788-KM` (string, required) - 車牌號碼
+  + driver: `木村` (string, optional) - 駕駛人
+  + avgRating: `1.8` (number, required) - 平均評分
+  + updatedAt: `1486367282` (number, required) - 更新時間
