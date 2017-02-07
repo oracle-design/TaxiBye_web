@@ -9,5 +9,7 @@ class Api::V1::TaxisController < Api::V1::BaseController
 
   def query
     @taxi = Taxi.where(plate_number: params[:license_plate_number]).first_or_create
+
+    render json: @taxi
   end
 end
