@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # Login
-      post :login, to: 'authorization#create'
+      post :authenticate, to: 'authorization#create'
 
       # Taxis
       resources :taxis, param: :license_plate_number, only: [] do
