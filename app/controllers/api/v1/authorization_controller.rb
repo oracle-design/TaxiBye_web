@@ -2,18 +2,30 @@ class Api::V1::AuthorizationController < Api::V1::BaseController
   skip_before_action :authenticate_token!, only: [:create]
 
   def create
-    user = User.find_by(email: params[:data][:email])
+    api_key = request.headers[:ApiKey]
+    device_id = request.headers[:DeviceID]
 
-    return render json: { errors: ['Invalid Email.'] }, status: :unauthorized if user.nil?
+    auth_token = AuthorizationService.new(api_key: api_key, device_id: device_id, params: login_params).apply_token!
 
-    if user.valid_password? params[:data][:password]
-      render json: {
-        data: {
-          authToken: JsonWebToken.encode(sub: user.id)
-        }
-      }, status: :accepted
-    else
-      render json: { errors: ['Invalid Email or password.'] }, status: :unauthorized
-    end
+    render json: {
+      data: {
+        authToken: auth_token
+      }
+    }, status: :accepted
+
+  rescue StandardError => error
+    render_error_message(error.message)
+  end
+
+  private
+
+  def login_params
+    params.require(:data).permit(:email, :password)
+  rescue ActionController::ParameterMissing
+    {}
+  end
+
+  def render_error_message(message)
+    render json: { errors: [message] }, status: :unauthorized
   end
 end
