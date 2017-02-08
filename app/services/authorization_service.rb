@@ -37,6 +37,7 @@ class AuthorizationService
   end
 
   def setup_payload
+    # TODO: not done yet, waiting for model implement
     payload = { device_id: 1, app_id: 2, is_registered: false }
     payload.merge!(@user_info) if login_params_provided?
 

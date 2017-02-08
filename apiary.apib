@@ -11,18 +11,26 @@ Change Log:
 
   - 2017.01.25 - 新增基本 API
   - 2017.02.02 - 新增 Authorization
+  - 2017.02.09 - 更新 Authorization
 
 ----
 
 # Group Authorization
 
-## 登入 [/login]
+## 登入 [/authenticate]
 
-使用 Email 和 Password 驗證使用者身份，並發行 Token
+使用 API 前要先透過這個 endpoint 取得 JWT，其他所有 endpoint 都必須在 Header 帶入 JWT 以驗證身份。
 
-### Login [POST]
+Api Key 和 Device ID 一定要提供，用來驗證 Client 端身份與紀錄未註冊使用者的 Device ID。當使用者需要登入認證身份時同樣透過這個 endpoint，在 body 額外提供 email 和 password 即可。
+
+### Authenticate [POST]
 
 + Request (application/json)
+
+    + Headers
+
+            ApiKey: 15a6bf35-a455-4108-87d4-b669eb76e987
+            DeviceID: 15a6bf35-a455-4108-87d4-b669eb76ea58
 
     + Attributes
       + data (Email Login Info)
