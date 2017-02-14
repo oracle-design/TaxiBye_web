@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       post :authenticate, to: 'authorization#create'
 
       # Taxis
-      resources :taxis, param: :license_plate_number, only: [] do
+      resources :taxis, param: :license_plate_number, only: %i(show) do
         collection do
           get 'ranking'
         end

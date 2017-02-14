@@ -68,6 +68,32 @@ Api Key 和 Device ID 一定要提供，用來驗證 Client 端身份與紀錄�
 
 
 
+## Taxi 查詢 [/taxis/{license_plate_number}{?ratingsCount}]
+
+### fetch Taxi detail info [GET]
+
++ Parameters
+    + ratingsCount: 10 (string, optional) - 指定回傳的 ratings 數量
+      如果沒給值的話預設會回傳 5 筆資料
+      + Default: `10`
+
++ Response 200 (application/json)
+
+    + Attributes
+      + data (Taxi Info)
+          + relationships (object)
+            + ratings (object)
+              + data (array)
+                + id: 1 (number)
+                + type: `ratings` (string)
+          + included (array[Rating Info])
+      + errors (array)
+      + meta (object)
+        + totalRatingsCount: 22 (number) - 總評價數
+
+
+
+
 ## 車牌查詢 [/taxis/{license_plate_number}/query]
 
 透過車牌查詢計程車的基本資料。
@@ -143,6 +169,14 @@ Api Key 和 Device ID 一定要提供，用來驗證 Client 端身份與紀錄�
 + score: `4` (number, required) - 評分，請給整數
 + message: `最快最趴最大` (string, optional) - 留言
 + tripFeelingId: `1` (number, required) - 行程感受選項
+
+### Rating Info
++ id (number)
++ attributes (object)
+  + score: `5.0` (string)
+  + message: `還可以` (string)
+  + tripFeeling: `fine` (string)
+  + updatedAt: 1486459669 (number)
 
 ### Login Success Response
 + authToken: `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.d8nHlCSuxGZJhvxktOd9beAW0YBsB6PNcTtr-M36XoE` (string, required) - JWT
