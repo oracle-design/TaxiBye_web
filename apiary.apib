@@ -66,6 +66,24 @@ Api Key 和 Device ID 一定要提供，用來驗證 Client 端身份與紀錄�
       + errors (array)
       + meta (object)
 
+## 歷史積分列表 [/taxi/{license_plate_number}/rating_detail{?number}]
+
+列出計程車的歷史積分列表。
+
+### fetch history rating list [GET]
+
++ Parameters
+    + number: 5 (string, optional) - 限制回傳的數量上限
+      如果沒給值的話預設會回傳 10 筆資料
+      + Default: `10`
+
++ Response 200 (application/json)
+
+    + Attributes
+      + data (array[Taxi Info])
+      + errors (array)
+      + meta (object)
+
 
 
 ## 車牌查詢 [/taxis/{license_plate_number}/query]
