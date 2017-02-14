@@ -15,4 +15,13 @@ class TaxiSerializer < ActiveModel::Serializer
   def updated_at
     object.updated_at.to_i
   end
+
+  # Detail Info
+  class Detail < TaxiSerializer
+    has_many :ratings
+
+    def ratings
+      object.ratings.recent.limit(instance_options.fetch(:ratings_count, 5))
+    end
+  end
 end

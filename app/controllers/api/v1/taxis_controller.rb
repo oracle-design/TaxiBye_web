@@ -4,10 +4,10 @@ class Api::V1::TaxisController < Api::V1::BaseController
     ratings_count = params.fetch(:ratingsCount, 5)
 
     render json: @taxi,
-      include: ['ratings'],
-      meta: { total_ratings_count: @taxi.ratings.count },
-      ratings_count: ratings_count,
-      serializer: TaxiDetailSerializer
+           include: ['ratings'],
+           meta: { total_ratings_count: @taxi.ratings.count },
+           ratings_count: ratings_count,
+           serializer: TaxiSerializer::Detail
   end
 
   def ranking
