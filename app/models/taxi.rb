@@ -13,9 +13,9 @@ class Taxi < ApplicationRecord
   self.primary_key = 'plate_number'
 
   has_many :trips, foreign_key: 'taxi_plate_number'
-  has_many :ratings, through: :trips
+  has_many :ratings, through: :trips # TODO: need adding counter cache
 
-  scope :ranking, -> {order(avg_rating: :desc)}
+  scope :ranking, -> { order(avg_rating: :desc) }
 
   def update_avg_rating
     all_ratings = ratings.select('score').map(&:score)

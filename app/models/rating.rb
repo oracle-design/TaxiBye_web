@@ -14,4 +14,6 @@
 class Rating < ApplicationRecord
   belongs_to :trip
   belongs_to :feeling, class_name: 'Trip::Feeling', foreign_key: 'trip_feeling_id'
+
+  scope :limited_ratings, ->(limit_number) { limit(limit_number) }
 end
