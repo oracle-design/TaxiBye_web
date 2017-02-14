@@ -66,6 +66,24 @@ Api Key 和 Device ID 一定要提供，用來驗證 Client 端身份與紀錄�
       + errors (array)
       + meta (object)
 
+## 歷史積分列表 [/taxis/{license_plate_number}/rating{?number}]
+
+列出計程車的歷史積分列表。
+
+### fetch history rating list [GET]
+
++ Parameters
+    + number: 5 (string, optional) - 限制回傳的數量上限
+      如果沒給值的話預設會回傳 10 筆資料
+      + Default: `10`
+
++ Response 200 (application/json)
+
+    + Attributes
+      + data (array[Rating Info])
+      + errors (array)
+      + meta (object)
+
 
 
 ## 車牌查詢 [/taxis/{license_plate_number}/query]
@@ -143,6 +161,15 @@ Api Key 和 Device ID 一定要提供，用來驗證 Client 端身份與紀錄�
 + score: `4` (number, required) - 評分，請給整數
 + message: `最快最趴最大` (string, optional) - 留言
 + tripFeelingId: `1` (number, required) - 行程感受選項
+
+### Rating Info
++ id: `1` (string, required) - PK
++ type: `ratings` (string, required) - resource type
++ attributes (object, required)
+  + score: `4` (number, required) - 評分
+  + message: `最快最趴最大` (string, optional) - 留言
+  + tripFeelingId: `1` (number, required) - 行程感受選項
+  + updatedAt: `1486367282` (number, required) - 更新時間
 
 ### Login Success Response
 + authToken: `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjF9.d8nHlCSuxGZJhvxktOd9beAW0YBsB6PNcTtr-M36XoE` (string, required) - JWT
